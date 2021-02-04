@@ -8,8 +8,8 @@ const createPeopleTable = `CREATE TABLE mcPeople(
 const createTotalTimeTable = `CREATE TABLE totalTime(
   totalID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   peopleID INT,
-  total INT NOT NULL DEFAULT 0,
-  FOREIGN KEY (peopleID) REFERENCES people(peopleID) ON DELETE CASCADE
+  timesum INT NOT NULL DEFAULT 0,
+  FOREIGN KEY (peopleID) REFERENCES mcPeople(peopleID) ON DELETE CASCADE
 )`;
 
 const createDailyTimeTable = `CREATE TABLE dailyTime(
@@ -17,7 +17,7 @@ const createDailyTimeTable = `CREATE TABLE dailyTime(
   peopleID INT,
   dailyTime INT NOT NULL DEFAULT 0,
   day DATE NOT NULL DEFAULT CURRENT_DATE,
-  FOREIGN KEY (peopleID) REFERENCES people(peopleID) ON DELETE CASCADE
+  FOREIGN KEY (peopleID) REFERENCES mcPeople(peopleID) ON DELETE CASCADE
 )`;
 
 const init = () => {
