@@ -10,20 +10,11 @@ app.use('/', express.static('./client/public'));
 
 pgres.connect();
 
-app.get('/test', async (req, res) => {
-  // axios.get(`https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`)
-  //   .then(result => res.json(result.data.players))
+app.get('/api/server', async (req, res) => {
+  let query = await axios.get(`https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`);
+  let players = query.data.players;
 
-  // let query = await axios.get(`https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`);
-  // let players = query.data.players;
-
-  // return res.json(players);
-
-  await checkServerForPlayers();
-
-  res.json('done')
-
-
+  return res.json(players);
     /* EXAMPLE RESPONSE:
     {
       "online": 1,
@@ -36,8 +27,11 @@ app.get('/test', async (req, res) => {
       }
     }
    */
+})
+
+app.get('/api/function', async (req, res) => {
+  await checkServerForPlayers();
+  res.json('done')
 });
 
 module.exports = app;
-
-// https://api.mcsrvstat.us/2/73.200.234.234:25565
