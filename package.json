@@ -1,0 +1,19 @@
+{
+  "name": "mc_server_user_stats",
+  "version": "1.0.0",
+  "description": "A small application that queries a minecraft server and tracks the time users spend online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stuzerain/mc_server_user_stats.git"
+  },
+  "author": "Stu Hanford",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stuzerain/mc_server_user_stats/issues"
+  },
+  "homepage": "https://github.com/Stuzerain/mc_server_user_stats#readme"
+}
