@@ -18,9 +18,9 @@ app.get('/api/stop', (req, res) => {
 
 app.get('/api/totals', async (req, res) => {
 
-  const totalQuery = `SELECT mcpeople.name, totaltime.timesum
-    FROM mcpeople, totaltime
-    WHERE mcpeople.peopleid = totaltime.peopleid`
+  const totalQuery = `SELECT m.name, t.timesum, m.peopleid
+    FROM mcpeople m, totaltime t
+    WHERE m.peopleid = t.peopleid`
 
   pgres.query(totalQuery)
     .then(result => {
@@ -39,9 +39,12 @@ app.get('/api/daily/:id/:date', async (req, res) => {
 
   pgres.query(dailyQuery)
     .then(result => {
-
-      res.json(result.rows)
+      if (result.rows[0]) {
+        return res.json(result.rows)
+      }
+      return res.json([{name: false}])
     })
+
 })
 
 app.get('/api/online', async (req, res) => {
