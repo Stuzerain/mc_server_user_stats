@@ -34,15 +34,12 @@ const insertDailyTime = (id) => `INSERT INTO dailyTime (peopleid) VALUES (${id})
 //   WHERE peopleid = ${id}`;
 
 const pgUpdate = (name) => {
-  console.log('starting')
 
   let personID;
-
 
   // Dealing with people and ensuring uniqueness
   pgres.query(checkPerson(name))
     .then(result => {
-      console.log('checked person')
       if (result.rows[0]) {
         return result;
       }
@@ -55,7 +52,6 @@ const pgUpdate = (name) => {
       return pgres.query(checkTotalTime(personID))
     })
     .then(result => {
-      console.log('checked totaltime');
       if (result.rows[0]) {
         return pgres.query(updateTotalTime(personID));
       }
@@ -65,7 +61,6 @@ const pgUpdate = (name) => {
   // Dealing with dailyTime
     .then(result => pgres.query(checkDailyTime(personID)))
     .then(result => {
-      console.log('checked dailytime')
       if (result.rows[0]) {
         return pgres.query(updateDailyTime(personID));
       }
@@ -95,11 +90,15 @@ const start = async (arr) => {
 const checkServerForPlayers = async () => {
   console.log('checkserverforplayers invoked')
   let minecraftQuery = await axios.get(`https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`);
-  let players = minecraftQuery.data.players;
 
-
-  if (players.list) {
-    start(players.list);
+  if (minecraftQuery.data.online) {
+    let players = minecraftQuery.data.players;
+    if (players.list) {
+      start(players.list);
+      console.log('tables updated');
+    }
+  } else {
+    console.log('server offline');
   }
 }
 

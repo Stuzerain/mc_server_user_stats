@@ -10,11 +10,55 @@ app.use('/', express.static('./client/public'));
 
 pgres.connect();
 
-app.get('/api/server', async (req, res) => {
-  let query = await axios.get(`https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`);
-  let players = query.data.players;
+let runMCQuery = setInterval(() => checkServerForPlayers(), 300000)
 
-  return res.json(players);
+app.get('/api/stop', (req, res) => {
+  clearInterval(runMCQuery)
+})
+
+app.get('/api/totals', async (req, res) => {
+
+  const totalQuery = `SELECT mcpeople.name, totaltime.timesum
+    FROM mcpeople, totaltime
+    WHERE mcpeople.peopleid = totaltime.peopleid`
+
+  pgres.query(totalQuery)
+    .then(result => {
+
+      res.json(result.rows)
+    })
+})
+
+app.get('/api/daily/:id/:date', async (req, res) => {
+  // NOTE: date should be a string in year-month-day format, i.e. '2021-02-04'
+  const { id, date } = req.params
+
+  const dailyQuery = `SELECT p.name, d.dailytime
+  FROM mcpeople p, dailytime d, totaltime t
+  WHERE (p.peopleid, d.peopleid, t.peopleid, d.day) = (${id}, ${id}, ${id}, '${date}');`
+
+  pgres.query(dailyQuery)
+    .then(result => {
+
+      res.json(result.rows)
+    })
+})
+
+app.get('/api/online', async (req, res) => {
+  let query = await axios.get(`https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`);
+
+  if (query.data.online) {
+    let players = query.data.players;
+
+    return res.json(players);
+  }
+
+  return res.json({
+    online: 0,
+    serverStatus: 'offline'
+  });
+
+
     /* EXAMPLE RESPONSE:
     {
       "online": 1,
@@ -29,9 +73,10 @@ app.get('/api/server', async (req, res) => {
    */
 })
 
-app.get('/api/function', async (req, res) => {
+app.get('/api/functiontest', async (req, res) => {
   await checkServerForPlayers();
   res.json('done')
 });
+
 
 module.exports = app;
