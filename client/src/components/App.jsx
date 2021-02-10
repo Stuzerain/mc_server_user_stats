@@ -11,7 +11,7 @@ import DateSearch from './DateSearch.jsx';
 
 
 const App = () => {
-  const [display, setDisplay] = useState('');
+  const [display, setDisplay] = useState('total');
 
   return (
     <div>

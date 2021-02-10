@@ -4,6 +4,7 @@ import axios from 'axios';
 import ChartView from './ChartView.jsx';
 import TableView from './TableView.jsx';
 import DateSearch from './DateSearch.jsx';
+import About from './About.jsx';
 
 
 
@@ -32,11 +33,22 @@ const Body = ( { display } ) => {
     checkTotals();
   }, [])
 
-  return (
+  if (display === 'total') return (
     <div>
       <TableView data={data} currentlyOnline={currentlyOnline} checkOnline={checkOnline}/>
       <ChartView data={data} checkTotals={checkTotals}/>
+    </div>
+  )
+
+  if (display === 'individual') return (
+    <div>
       <DateSearch data={data}/>
+    </div>
+  )
+
+  if (display === 'about') return (
+    <div>
+      <About />
     </div>
   )
 }
