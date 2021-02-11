@@ -1,4 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const ColoredHead = styled.thead`
+  background-color: lightgray;
+`;
+
+const PlaytimeTable = styled.table`
+  border: 1px solid black;
+  margin: auto;
+  text-align: center;
+  padding: 4px;
+`;
 
 const OverTimeTable = ( { individualData } ) => {
 
@@ -21,17 +33,17 @@ const OverTimeTable = ( { individualData } ) => {
 
   return (
 
-  <table style={{border: '1px solid black', margin: 'auto', textAlign: 'center', padding: '4px'}}>
-    <thead >
-      <tr style={{backgroundColor: 'lightgray'}}>
+  <PlaytimeTable>
+    <ColoredHead >
+      <tr>
         <th>Date</th>
         <th>Playtime</th>
       </tr>
-    </thead>
+    </ColoredHead>
     <tbody>
       {dataMapper()}
     </tbody>
-  </table>
+  </PlaytimeTable>
 
   )
 
