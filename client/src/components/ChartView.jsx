@@ -1,6 +1,18 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
+import styled from 'styled-components';
 import {Line} from 'react-chartjs-2';
+
+const ChartWrapper = styled.div`
+  border: 1px solid black;
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const UpdateChartButton = styled.button`
+  max-width: 125px;
+  `;
 
 const ChartView = ( { data, checkTotals }) => {
 
@@ -11,7 +23,7 @@ const ChartView = ( { data, checkTotals }) => {
   })
 
   return (
-    <div style={{border: '1px solid black', margin: '2%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+    <ChartWrapper>
       <Line
       data={
         {datasets: [{
@@ -40,8 +52,8 @@ const ChartView = ( { data, checkTotals }) => {
         }
       }
       />
-      <button style={{maxWidth: '125px'}}onClick={checkTotals}>Update Table</button>
-    </div>
+      <UpdateChartButton onClick={checkTotals}>Update Table</UpdateChartButton>
+    </ChartWrapper>
   )
 }
 
