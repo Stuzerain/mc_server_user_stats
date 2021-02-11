@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const Header = ( { setDisplay } ) => {
+
+  const Heading = styled.header`
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    background-color: lightgray;
+  `;
+
+  const HeadItem = styled.h2`
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 4px;
+    cursor: pointer;
+  `;
 
   const h2Style = {
     border: '1px solid black',
@@ -10,11 +25,11 @@ const Header = ( { setDisplay } ) => {
   }
 
   return (
-    <header style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto', backgroundColor: 'lightgray'}}>
-      <h2 style={h2Style} onClick={() => setDisplay('total')}>Total Playtime</h2>
-      <h2 style={h2Style} onClick={() => setDisplay('individual')}>Individual Playtimes</h2>
-      <h2 style={h2Style} onClick={() => setDisplay('about')}>About</h2>
-    </header>
+    <Heading>
+      <HeadItem onClick={() => setDisplay('total')}>Total Playtime</HeadItem>
+      <HeadItem onClick={() => setDisplay('individual')}>Individual Playtimes</HeadItem>
+      <HeadItem onClick={() => setDisplay('about')}>About</HeadItem>
+    </Heading>
   )
 }
 

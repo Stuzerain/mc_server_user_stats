@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useTable } from 'react-table'
 
 const TableView = ( { data, currentlyOnline, checkOnline }) => {
 
