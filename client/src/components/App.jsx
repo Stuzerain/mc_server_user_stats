@@ -8,8 +8,6 @@ import ChartView from './ChartView.jsx';
 import TableView from './TableView.jsx';
 import DateSearch from './DateSearch.jsx';
 
-
-
 const App = () => {
   const [display, setDisplay] = useState('total');
 
@@ -22,3 +20,4 @@ const App = () => {
 }
 
 export default App;
+

@@ -4,6 +4,8 @@ import OverTimeTable from './OverTimeTable.jsx';
 import styled from 'styled-components';
 import axios from 'axios';
 
+const { getIndividualStats } = require('../utilities/APIfunctions.js');
+
 const DateComponentsWrapper = styled.div`
   margin: 2%;
   text-align: center;
@@ -23,20 +25,20 @@ const DateSearch = ( { data } ) => {
 
 
 
-  const getIndividualStats = () => {
-    if (selected.length > 0) {
-      axios.get(`/api/individual/${selected}`)
-      .then(result => {
-        let constructedResponse = { dates: [], times: [] }
-        result.data.forEach(row => {
-          constructedResponse.dates.push(row.day.substring(0, 10));
-          constructedResponse.times.push(row.dailytime);
-        })
-        constructedResponse.dates.sort();
-        return setIndividualData(constructedResponse);
-      })
-    }
-  }
+  // const getIndividualStats = () => {
+  //   if (selected.length > 0) {
+  //     axios.get(`/api/individual/${selected}`)
+  //     .then(result => {
+  //       let constructedResponse = { dates: [], times: [] }
+  //       result.data.forEach(row => {
+  //         constructedResponse.dates.push(row.day.substring(0, 10));
+  //         constructedResponse.times.push(row.dailytime);
+  //       })
+  //       constructedResponse.dates.sort();
+  //       return setIndividualData(constructedResponse);
+  //     })
+  //   }
+  // }
 
 
   return (
@@ -50,7 +52,7 @@ const DateSearch = ( { data } ) => {
           {usersMap}
         </select>
       </form>
-      <button onClick={() => getIndividualStats()}>Check playtime</button>
+      <button onClick={() => getIndividualStats(selected, setIndividualData)}>Check playtime</button>
 
       {individualData.dates &&
         <div>

@@ -6,37 +6,21 @@ import TableView from './TableView.jsx';
 import DateSearch from './DateSearch.jsx';
 import About from './About.jsx';
 
-
+const { checkTotals, checkOnline } = require('../utilities/APIfunctions.js');
 
 const Body = ( { display } ) => {
   const [data, setData] = useState([]);
   const [currentlyOnline, setCurrentlyOnline] = useState([]);
 
-  const checkTotals = () => {
-    axios.get('/api/totals')
-      .then(results => {
-        setData(results.data);
-      })
-  }
-
-  const checkOnline = () => {
-    axios.get('/api/online')
-    .then(results => {
-      if (results.data.online > 0) {
-        setCurrentlyOnline(results.data.list)
-      }
-    })
-  }
-
   useEffect(() => {
-    checkOnline();
-    checkTotals();
+    checkOnline(setCurrentlyOnline);
+    checkTotals(setData);
   }, [])
 
   if (display === 'total') return (
     <div>
-      <TableView data={data} currentlyOnline={currentlyOnline} checkOnline={checkOnline}/>
-      <ChartView data={data} checkTotals={checkTotals}/>
+      <TableView data={data} currentlyOnline={currentlyOnline} checkOnline={() => checkOnline(setCurrentlyOnline)}/>
+      <ChartView data={data} checkTotals={() => checkTotals(setData)}/>
     </div>
   )
 
