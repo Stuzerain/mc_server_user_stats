@@ -29,6 +29,17 @@ app.get('/api/totals', async (req, res) => {
     })
 })
 
+app.get('/api/individual/:id', async (req, res) => {
+  const { id } = req.params
+  const individualQuery = `SELECT m.name, d.dailytime, d.day::date
+  FROM mcpeople m, dailytime d
+  WHERE (m.peopleid, d.peopleid) = (${id}, ${id})`;
+
+  pgres.query(individualQuery)
+    .then(result => res.json(result.rows))
+
+})
+
 app.get('/api/daily/:id/:date', async (req, res) => {
   // NOTE: date should be a string in year-month-day format, i.e. '2021-02-04'
   const { id, date } = req.params
