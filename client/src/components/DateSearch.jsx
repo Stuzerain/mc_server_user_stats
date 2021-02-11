@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import OverTimeChart from './OverTimeChart.jsx';
 import OverTimeTable from './OverTimeTable.jsx';
-
+import styled from 'styled-components';
 import axios from 'axios';
+
+const DateComponentsWrapper = styled.div`
+  margin: 2%;
+  text-align: center;
+`;
 
 
 const DateSearch = ( { data } ) => {
@@ -35,8 +40,8 @@ const DateSearch = ( { data } ) => {
 
 
   return (
-    <div style={{margin: '2%', textAlign: 'center'}}>
-      <h3>Select a user and a date to view playtime for that date</h3>
+    <DateComponentsWrapper>
+      <h3>Select a user to view daily playtimes across time for that user</h3>
 
       <form>
         <label htmlFor='user'>User:</label>
@@ -47,13 +52,13 @@ const DateSearch = ( { data } ) => {
       </form>
       <button onClick={() => getIndividualStats()}>Check playtime</button>
 
-    {individualData.dates &&
-      <div>
-      <OverTimeTable individualData={individualData} />
-      <OverTimeChart individualData={individualData} />
-      </div>
+      {individualData.dates &&
+        <div>
+        <OverTimeTable individualData={individualData} />
+        <OverTimeChart individualData={individualData} />
+        </div>
       }
-    </div>
+    </DateComponentsWrapper>
   )
 
 }
