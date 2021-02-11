@@ -44,8 +44,6 @@ const DateSearch = ( { data } ) => {
           <option value='default' disabled>Select a user</option>
           {usersMap}
         </select>
-        {/* <label htmlFor='date'>Date:</label>
-        <input type='date' id='date' onChange={(event) => setDate(event.target.value)}></input> */}
       </form>
       <button onClick={() => getIndividualStats()}>Check playtime</button>
 
@@ -55,7 +53,6 @@ const DateSearch = ( { data } ) => {
       <OverTimeChart individualData={individualData} />
       </div>
       }
-
     </div>
   )
 
