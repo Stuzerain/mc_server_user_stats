@@ -1,8 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import styled from 'styled-components';
+
+const PlaytimeTable = styled.table`
+  border: 1px solid black;
+  margin: auto;
+  text-align: center;
+  padding: 4px;
+`;
+
+const TablesWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+`;
+
+const ColoredHead = styled.thead`
+  background-color: lightgray;
+`;
+
+const NotOnlineRow = styled.tr`
+  background-color: pink;
+`;
 
 const TableView = ( { data, currentlyOnline, checkOnline }) => {
-
-
 
   const mapRows = data.map((person, index) =>
     <tr key={index}>
@@ -18,32 +38,32 @@ const TableView = ( { data, currentlyOnline, checkOnline }) => {
     )
 
   const noOnline = () =>
-    <tr style={{backgroundColor: 'pink'}}>
+    <NotOnlineRow>
       <td>No players online</td>
-    </tr>
+    </NotOnlineRow>
 
   return (
-    <div style={{display: 'flex', flexDirection: 'row', margin: 'auto'}}>
-      <table style={{border: '1px solid black', margin: 'auto', textAlign: 'center', padding: '4px'}}>
+    <TablesWrapper>
+      <PlaytimeTable>
         <caption>Total playtime of users</caption>
-        <thead >
-          <tr style={{backgroundColor: 'lightgray'}}>
+        <ColoredHead>
+          <tr>
             <th>Name</th>
             <th>Total Time</th>
           </tr>
-        </thead>
+        </ColoredHead>
         <tbody>
           {mapRows}
         </tbody>
-      </table>
+      </PlaytimeTable>
 
-        <table style={{border: '1px solid black', margin: 'auto', textAlign: 'center', padding: '4px'}}>
+        <PlaytimeTable>
           <caption>Currently online</caption>
-          <thead >
-            <tr style={{backgroundColor: 'lightgray'}}>
+          <ColoredHead>
+            <tr >
               <th>Name</th>
             </tr>
-          </thead>
+          </ColoredHead>
           <tbody>
             {currentlyOnline.length ? mapOnline : noOnline()}
           </tbody>
@@ -54,9 +74,8 @@ const TableView = ( { data, currentlyOnline, checkOnline }) => {
               </td>
             </tr>
           </tfoot>
-        </table>
-    </div>
-
+        </PlaytimeTable>
+    </TablesWrapper>
   )
 }
 

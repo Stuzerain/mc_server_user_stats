@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
+const Heading = styled.header`
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  background-color: lightgray;
+`;
+
+const HeadItem = styled.h2`
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 4px;
+  cursor: pointer;
+`;
+
 const Header = ( { setDisplay } ) => {
-
-  const Heading = styled.header`
-    display: flex;
-    justify-content: space-around;
-    margin: auto;
-    background-color: lightgray;
-  `;
-
-  const HeadItem = styled.h2`
-    border: 1px solid black;
-    border-radius: 50px;
-    padding: 4px;
-    cursor: pointer;
-  `;
-
-  const h2Style = {
-    border: '1px solid black',
-    borderRadius: '50px',
-    padding: '4px',
-    cursor: 'pointer',
-  }
-
   return (
     <Heading>
       <HeadItem onClick={() => setDisplay('total')}>Total Playtime</HeadItem>
