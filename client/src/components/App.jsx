@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 import Header from './Header.jsx';
 import Body from './Body.jsx';
 
-import ChartView from './ChartView.jsx';
-import TableView from './TableView.jsx';
-import DateSearch from './DateSearch.jsx';
+const AppWrapper = styled.div`
+/* background-image: url(dirtTransition.jpg); */
+`;
 
 const App = () => {
   const [display, setDisplay] = useState('total');
 
   return (
-    <div>
+    <AppWrapper>
       <Header setDisplay={setDisplay} />
       <Body display={display}/>
-    </div>
+    </AppWrapper>
   )
 }
 

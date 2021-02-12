@@ -5,7 +5,8 @@ const Heading = styled.header`
   display: flex;
   justify-content: space-around;
   margin: auto;
-  background-color: lightgray;
+  background-image: url(grass.png);
+  background-size: 225px;
 `;
 
 const HeadItem = styled.h2`
@@ -13,6 +14,7 @@ const HeadItem = styled.h2`
   border-radius: 50px;
   padding: 4px;
   cursor: pointer;
+  background-color: lightgray;
 `;
 
 const Header = ( { setDisplay } ) => {

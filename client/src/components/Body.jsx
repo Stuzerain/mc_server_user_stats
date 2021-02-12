@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
+import styled from 'styled-components';
 
 import ChartView from './ChartView.jsx';
 import TableView from './TableView.jsx';
@@ -7,6 +8,12 @@ import DateSearch from './DateSearch.jsx';
 import About from './About.jsx';
 
 const { checkTotals, checkOnline } = require('../utilities/APIfunctions.js');
+
+const BodyWrapper = styled.div`
+  background-image: url(dirt.jpg);
+  height: 100vh;
+  padding: 2%;
+`;
 
 const Body = ( { display } ) => {
   const [data, setData] = useState([]);
@@ -18,22 +25,22 @@ const Body = ( { display } ) => {
   }, [])
 
   if (display === 'total') return (
-    <div>
+    <BodyWrapper>
       <TableView data={data} currentlyOnline={currentlyOnline} checkOnline={() => checkOnline(setCurrentlyOnline)}/>
       <ChartView data={data} checkTotals={() => checkTotals(setData)}/>
-    </div>
+    </BodyWrapper>
   )
 
   if (display === 'individual') return (
-    <div>
+    <BodyWrapper>
       <DateSearch data={data}/>
-    </div>
+    </BodyWrapper>
   )
 
   if (display === 'about') return (
-    <div>
+    <BodyWrapper>
       <About />
-    </div>
+    </BodyWrapper>
   )
 }
 

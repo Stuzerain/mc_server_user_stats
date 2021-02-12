@@ -7,8 +7,19 @@ import axios from 'axios';
 const { getIndividualStats } = require('../utilities/APIfunctions.js');
 
 const DateComponentsWrapper = styled.div`
-  margin: 2%;
+  /* margin: 2%; */
   text-align: center;
+  /* background-color: white; */
+`;
+
+const InfoHeader = styled.span`
+  font-weight: bold;
+  margin-top: 0;
+  background-color: white;
+`;
+
+const UserDropdown = styled.span`
+  background-color: white;
 `;
 
 
@@ -23,35 +34,20 @@ const DateSearch = ( { data } ) => {
     <option key={index} value={user.peopleid}>{user.name}</option>
   )
 
-
-
-  // const getIndividualStats = () => {
-  //   if (selected.length > 0) {
-  //     axios.get(`/api/individual/${selected}`)
-  //     .then(result => {
-  //       let constructedResponse = { dates: [], times: [] }
-  //       result.data.forEach(row => {
-  //         constructedResponse.dates.push(row.day.substring(0, 10));
-  //         constructedResponse.times.push(row.dailytime);
-  //       })
-  //       constructedResponse.dates.sort();
-  //       return setIndividualData(constructedResponse);
-  //     })
-  //   }
-  // }
-
-
   return (
     <DateComponentsWrapper>
-      <h3>Select a user to view daily playtimes across time for that user</h3>
+      <InfoHeader>Select a user to view daily playtimes across time for that user</InfoHeader>
 
       <form>
-        <label htmlFor='user'>User:</label>
-        <select id='user' defaultValue='default' onChange={(event) => setSelected(event.target.value)}>
-          <option value='default' disabled>Select a user</option>
-          {usersMap}
-        </select>
+        <UserDropdown>
+          <label htmlFor='user'>User:</label>
+          <select id='user' defaultValue='default' onChange={(event) => setSelected(event.target.value)}>
+            <option value='default' disabled>Select a user</option>
+            {usersMap}
+          </select>
+        </UserDropdown>
       </form>
+
       <button onClick={() => getIndividualStats(selected, setIndividualData)}>Check playtime</button>
 
       {individualData.dates &&

@@ -6,6 +6,7 @@ const PlaytimeTable = styled.table`
   margin: auto;
   text-align: center;
   padding: 4px;
+  background-color: white;
 `;
 
 const TablesWrapper = styled.div`
