@@ -13,7 +13,13 @@ pgres.connect();
 let runMCQuery = setInterval(() => checkServerForPlayers(), 300000)
 
 app.get('/api/stop', (req, res) => {
-  clearInterval(runMCQuery)
+  clearInterval(runMCQuery);
+  return res.json('stopped')
+})
+
+app.get('/api/start', (req, res) => {
+  runMCQuery = setInterval(() => checkServerForPlayers(), 300000);
+  return res.json('started')
 })
 
 app.get('/api/totals', async (req, res) => {
