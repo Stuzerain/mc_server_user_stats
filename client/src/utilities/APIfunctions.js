@@ -16,6 +16,7 @@ const checkOnline = (updateFn) => {
   })
 }
 
+// gets playtime on individual days for a player and wrangles the data
 const getIndividualStats = (selected, updateFn) => {
   if (selected.length > 0) {
     axios.get(`/api/individual/${selected}`)

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import ChartView from './ChartView.jsx';
-import TableView from './TableView.jsx';
+import TotalChart from './TotalChart.jsx';
+import TotalTable from './TotalTable.jsx';
 import DateSearch from './DateSearch.jsx';
 import About from './About.jsx';
 
@@ -16,6 +16,7 @@ const BodyWrapper = styled.div`
 `;
 
 const Body = ( { display } ) => {
+  /*** state that holds player data and list of currently online players ***/
   const [data, setData] = useState([]);
   const [currentlyOnline, setCurrentlyOnline] = useState([]);
 
@@ -23,11 +24,12 @@ const Body = ( { display } ) => {
     checkOnline(setCurrentlyOnline);
     checkTotals(setData);
   }, [])
+  /*----------------------------*/
 
   if (display === 'total') return (
     <BodyWrapper>
-      <TableView data={data} currentlyOnline={currentlyOnline} checkOnline={() => checkOnline(setCurrentlyOnline)}/>
-      <ChartView data={data} checkTotals={() => checkTotals(setData)}/>
+      <TotalTable data={data} currentlyOnline={currentlyOnline} checkOnline={() => checkOnline(setCurrentlyOnline)}/>
+      <TotalChart data={data} checkTotals={() => checkTotals(setData)}/>
     </BodyWrapper>
   )
 

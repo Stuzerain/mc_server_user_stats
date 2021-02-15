@@ -1,13 +1,16 @@
+/* ensures that background images cover entire window */
 html, body {
   margin: 0;
   height: 100%;
   width: 100%;
 }
 
+/* ensures that charts have white background */
 canvas {
   background-color: white;
 }
 
+/* ensures that table captions match tables -- they are not included in table styling */
 caption {
   background-color: white;
   border: 1px solid black;

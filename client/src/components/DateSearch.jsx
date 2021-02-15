@@ -7,9 +7,7 @@ import axios from 'axios';
 const { getIndividualStats } = require('../utilities/APIfunctions.js');
 
 const DateComponentsWrapper = styled.div`
-  /* margin: 2%; */
   text-align: center;
-  /* background-color: white; */
 `;
 
 const InfoHeader = styled.span`
@@ -64,7 +62,8 @@ const DateSearch = ( { data } ) => {
 export default DateSearch;
 
 
-/*** Parts of old format -- may come back for reuse later  ***/
+/*** Parts of old format -- may come back for reuse later
+ * Includes ability to search by specific date  ***/
 
 
   // const getDateStats = () => {

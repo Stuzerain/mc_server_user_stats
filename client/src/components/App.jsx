@@ -5,10 +5,11 @@ import Header from './Header.jsx';
 import Body from './Body.jsx';
 
 const AppWrapper = styled.div`
-/* background-image: url(dirtTransition.jpg); */
+
 `;
 
 const App = () => {
+  // state that determines which 'tab' is in use
   const [display, setDisplay] = useState('total');
 
   return (
