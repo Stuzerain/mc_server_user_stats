@@ -14,7 +14,7 @@ This application is intended to be lightweight and not require direct access to 
 
 ## Usage ##
 - The application has 3 main tabs -- 'Total Playtime,' 'Individual Playtimes', and 'About.'
-- 'Total Playtime' shows information about all players the application has collected, including a table of total playtime and a chart representing that same data. It also features a table that shows currently online players, and this can be refreshed with the 'Refresh table' button. The chart can be refreshed using the 'Update Table' button, but this will only update the table if there have been any changes to the data. This means a user must have been on the webpage for at least one query period, and a player must have been online for the playtime to change.
+- 'Total Playtime' shows information about all players the application has collected, including a table of total playtime and a chart representing that same data. It also features a table that shows currently online players, and this can be refreshed with the 'Refresh Table' button. The chart can be refreshed using the 'Update Chart' button, but this will only update the table if there have been any changes to the data. This means a user must have been on the webpage for at least one query period, and a player must have been online for the playtime to change.
 - 'Individual Playtimes' allows a user to select a player by name and view their playtime on individual days in both a table and chart form.
 - 'About' displays information about the application and additional resources.
 
@@ -23,5 +23,7 @@ This application is intended to be lightweight and not require direct access to 
 
 ### Known Bugs/Issues ###
 - Charts resize oddly. If a webpage is adjusted, the charts will always expand, whether the webpage is being expanded or shrunken. Current fix is to refresh webpage.
-- Line chart may not be ideal choice for representing playtimes given that if there is only a single data point (i.e. only a single user in total or a single day in idividual data), a single point is not an intuitively sensical representation of that.
 - Several settings in `react-chartjs-2` don't appear  to function as intended. In future, the library may need to be replaced with one that functions as intended, as it is the source of several bugs.
+
+### Example ###
+Please see: https://recordit.co/6myoTOskSR for an example of the frontend.

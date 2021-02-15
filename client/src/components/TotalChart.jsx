@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Line} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 
 const ChartWrapper = styled.div`
   /* border: 1px solid black; */
@@ -14,7 +14,7 @@ const UpdateChartButton = styled.button`
   max-width: 125px;
   `;
 
-const ChartView = ( { data, checkTotals }) => {
+const TotalChart = ( { data, checkTotals }) => {
 
   let constructedResponse = { names: [], times: []};
   data.forEach(row => {
@@ -24,7 +24,7 @@ const ChartView = ( { data, checkTotals }) => {
 
   return (
     <ChartWrapper>
-      <Line
+      <Bar
       data={
         {datasets: [{
           borderColor: 'black',
@@ -52,9 +52,9 @@ const ChartView = ( { data, checkTotals }) => {
         }
       }
       />
-      <UpdateChartButton onClick={checkTotals}>Update Table</UpdateChartButton>
+      <UpdateChartButton onClick={checkTotals}>Update Chart</UpdateChartButton>
     </ChartWrapper>
   )
 }
 
-export default ChartView;
+export default TotalChart;

@@ -8,8 +8,10 @@ app.use(express.json());
 
 app.use('/', express.static('./client/public'));
 
+// App requires connection to postgres to function
 pgres.connect();
 
+/***  ***/
 let runMCQuery = setInterval(() => checkServerForPlayers(), 300000)
 
 app.get('/api/stop', (req, res) => {
@@ -21,6 +23,7 @@ app.get('/api/start', (req, res) => {
   runMCQuery = setInterval(() => checkServerForPlayers(), 300000);
   return res.json('started')
 })
+/*---------------------------------*/
 
 app.get('/api/totals', async (req, res) => {
 
@@ -92,11 +95,5 @@ app.get('/api/online', async (req, res) => {
     }
    */
 })
-
-app.get('/api/functiontest', async (req, res) => {
-  await checkServerForPlayers();
-  res.json('done')
-});
-
 
 module.exports = app;

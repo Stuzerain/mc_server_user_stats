@@ -1,6 +1,8 @@
 const axios = require('axios');
 const pgres = require('../database/index.js');
 
+
+/*** postgres queries ***/
 const checkPerson = (name) => `SELECT peopleid FROM mcpeople where name = '${name}'`;
 
 const insertPerson = (name) => `INSERT INTO mcpeople
@@ -14,24 +16,13 @@ const updateTotalTime = (id) => `UPDATE totalTime SET timesum = timesum+5 WHERE 
 
 const insertTotalTime = (id) => `INSERT INTO totalTime (peopleid) VALUES (${id})`;
 
-// const upsertTotalTime = (id) => `INSERT INTO totalTime
-// (peopleid) VALUES
-//   (${id})
-// ON CONFLICT (peopleid) DO UPDATE
-//   SET timesum = timesum + 5`;
-
 const checkDailyTime = (id) => `SELECT dailyid FROM dailyTime WHERE (peopleid, day) = (${id}, current_date)`;
 
 const updateDailyTime = (id) => `UPDATE dailyTime SET dailytime = dailytime +5 WHERE (peopleid, day) = (${id}, current_date)`;
 
 const insertDailyTime = (id) => `INSERT INTO dailyTime (peopleid) VALUES (${id})`;
+/*---------------------------*/
 
-// const upsertDailyTime = (id) => `INSERT INTO DailyTime
-// (peopleid) VALUES
-//   (${id})
-// ON CONFLICT (day) DO UPDATE
-//   SET dailyTime = dailyTime + 5
-//   WHERE peopleid = ${id}`;
 
 const pgUpdate = (name) => {
 
@@ -71,6 +62,8 @@ const pgUpdate = (name) => {
     .catch(err => console.error(err))
 }
 
+
+/*** Asynchronously update tables ***/
 const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
 
 const asyncForEach = async (array, callback) => {
@@ -85,7 +78,7 @@ const start = async (arr) => {
     pgUpdate(item);
   });
 }
-
+/*--------------------------*/
 
 const checkServerForPlayers = async () => {
   console.log('checkserverforplayers invoked')
@@ -103,3 +96,18 @@ const checkServerForPlayers = async () => {
 }
 
 module.exports = checkServerForPlayers;
+
+
+/*** First attempts at upsert functions for data entry -- may want to revisit for efficiency later ***/
+// const upsertTotalTime = (id) => `INSERT INTO totalTime
+// (peopleid) VALUES
+//   (${id})
+// ON CONFLICT (peopleid) DO UPDATE
+//   SET timesum = timesum + 5`;
+
+// const upsertDailyTime = (id) => `INSERT INTO DailyTime
+// (peopleid) VALUES
+//   (${id})
+// ON CONFLICT (day) DO UPDATE
+//   SET dailyTime = dailyTime + 5
+//   WHERE peopleid = ${id}`;

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 const OverTimeChart = ( { individualData } ) => {
 
   return (
 
-    <Line
+    <Bar
       data={
         {datasets: [{
           borderColor: 'black',

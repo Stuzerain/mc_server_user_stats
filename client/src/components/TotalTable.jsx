@@ -23,7 +23,7 @@ const NotOnlineRow = styled.tr`
   background-color: pink;
 `;
 
-const TableView = ( { data, currentlyOnline, checkOnline }) => {
+const TotalTable = ( { data, currentlyOnline, checkOnline }) => {
 
   const mapRows = data.map((person, index) =>
     <tr key={index}>
@@ -71,7 +71,7 @@ const TableView = ( { data, currentlyOnline, checkOnline }) => {
           <tfoot>
             <tr>
               <td>
-                <button onClick={checkOnline}>Refresh table</button>
+                <button onClick={checkOnline}>Refresh Table</button>
               </td>
             </tr>
           </tfoot>
@@ -80,4 +80,4 @@ const TableView = ( { data, currentlyOnline, checkOnline }) => {
   )
 }
 
-export default TableView;
+export default TotalTable;

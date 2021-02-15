@@ -15,6 +15,7 @@ const PlaytimeTable = styled.table`
 
 const OverTimeTable = ( { individualData } ) => {
 
+  // wrangles data and renders rows
   const dataMapper = () => {
     let output = [];
     for (let i = 0; i < individualData.dates.length; i++) {
@@ -26,14 +27,10 @@ const OverTimeTable = ( { individualData } ) => {
 
       )
     }
-
     return output.map(row => row)
   }
 
-
-
   return (
-
   <PlaytimeTable>
     <ColoredHead >
       <tr>
@@ -45,7 +42,6 @@ const OverTimeTable = ( { individualData } ) => {
       {dataMapper()}
     </tbody>
   </PlaytimeTable>
-
   )
 
 }
