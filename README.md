@@ -19,7 +19,8 @@ This application is intended to be lightweight and not require direct access to 
 - 'About' displays information about the application and additional resources.
 
 ## Future Plans ##
-- Message board functionality for players to communicate asynchronously via an online instance of this application.
+- Mod list in 'About' tab
+- Message board functionality for players to communicate asynchronously via an online instance of this application (?)
 
 ### Known Bugs/Issues ###
 - Charts resize oddly. If a webpage is adjusted, the charts will always expand, whether the webpage is being expanded or shrunken. Current fix is to refresh webpage.
