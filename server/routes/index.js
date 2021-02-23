@@ -74,4 +74,10 @@ api.get('/online', async (req, res) => {
   });
 })
 
+api.get('/raw', async (req, res) => {
+  let query = await axios.get(`https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`);
+
+  return res.json(query.data);
+})
+
 module.exports = api;

@@ -2,17 +2,17 @@ import axios from 'axios';
 
 const checkTotals = (updateFn) => {
   axios.get('/api/totals')
-    .then(results => {
-      updateFn(results.data);
+    .then(result => {
+      updateFn(result.data);
     })
 }
 
 const checkOnline = (updateFn) => {
   axios.get('/api/online')
-  .then(results => {
-    if (results.data.online > 0) {
-      updateFn(results.data.list)
-    }
+    .then(result => {
+      if (result.data.online > 0) {
+        updateFn(result.data.list)
+      }
   })
 }
 
@@ -20,16 +20,28 @@ const checkOnline = (updateFn) => {
 const getIndividualStats = (selected, updateFn) => {
   if (selected.length > 0) {
     axios.get(`/api/individual/${selected}`)
-    .then(result => {
-      let constructedResponse = { dates: [], times: [] }
-      result.data.forEach(row => {
-        constructedResponse.dates.push(row.day.substring(0, 10));
-        constructedResponse.times.push(row.dailytime);
+      .then(result => {
+        let constructedResponse = { dates: [], times: [] }
+        result.data.forEach(row => {
+          constructedResponse.dates.push(row.day.substring(0, 10));
+          constructedResponse.times.push(row.dailytime);
+        })
+        constructedResponse.dates.sort();
+        return updateFn(constructedResponse);
       })
-      constructedResponse.dates.sort();
-      return updateFn(constructedResponse);
-    })
   }
 }
 
-export { checkTotals, checkOnline, getIndividualStats }
+const getRawData = (updateFn) => {
+  axios.get('/api/raw')
+    .then(result => {
+      // slight privacy cleanup
+      delete result.data.ip;
+      delete result.data.port;
+      delete result.data.hostname;
+      delete result.data.icon;
+      return updateFn(result.data)
+    })
+}
+
+export { checkTotals, checkOnline, getIndividualStats, getRawData }
