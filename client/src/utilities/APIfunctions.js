@@ -35,11 +35,13 @@ const getIndividualStats = (selected, updateFn) => {
 const getRawData = (updateFn) => {
   axios.get('/api/raw')
     .then(result => {
-      // slight privacy cleanup
+      // slight privacy+presentation cleanup
       delete result.data.ip;
       delete result.data.port;
       delete result.data.hostname;
       delete result.data.icon;
+      delete result.data.motd;
+      delete result.data.players.uuid;
       return updateFn(result.data)
     })
 }
