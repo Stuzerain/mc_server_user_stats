@@ -24,7 +24,8 @@ const init = () => {
   pgres.connect();
   console.log('starting setup');
 
-  pgres.query(createPeopleTable)
+  pgres
+    .query(createPeopleTable)
     .then(() => {
       console.log('people table created');
       pgres.query(createTotalTimeTable);
@@ -33,23 +34,21 @@ const init = () => {
       console.log('total time table created');
       pgres.query(createDailyTimeTable);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
-      return pgres.end()
-      .then(() => {
+      return pgres.end().then(() => {
         console.log('disconnected');
-      })
-    })
+      });
+    });
 };
 
 const setup = () => {
   init();
   setTimeout(() => {
-    pgres.end()
-      .then(() => {
-        console.log('disconnected')
-      })
-  }, 250)
-}
+    pgres.end().then(() => {
+      console.log('disconnected');
+    });
+  }, 250);
+};
 
 setup();

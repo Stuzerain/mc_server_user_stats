@@ -10,19 +10,17 @@ const RawData = styled.div`
   background-color: white;
 `;
 
-const Raw = ( { rawData } ) => {
+const Raw = ({ rawData }) => {
   const [showingRaw, toggleShowingRaw] = useState(false);
 
   return (
     <RawWrapper>
-      <button onClick={() => toggleShowingRaw(!showingRaw)}>Toggle Raw Data View</button>
-      {showingRaw &&
-        <RawData>
-        {JSON.stringify(rawData, null, 2)}
-        </RawData>
-      }
+      <button onClick={() => toggleShowingRaw(!showingRaw)}>
+        Toggle Raw Data View
+      </button>
+      {showingRaw && <RawData>{JSON.stringify(rawData, null, 2)}</RawData>}
     </RawWrapper>
-  )
-}
+  );
+};
 
 export default Raw;

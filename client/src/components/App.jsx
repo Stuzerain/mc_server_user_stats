@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import Header from './Header.jsx';
 import Body from './Body.jsx';
 
-const AppWrapper = styled.div`
-
-`;
+const AppWrapper = styled.div``;
 
 const App = () => {
   // state that determines which 'tab' is in use
@@ -15,10 +13,9 @@ const App = () => {
   return (
     <AppWrapper>
       <Header setDisplay={setDisplay} />
-      <Body display={display}/>
+      <Body display={display} />
     </AppWrapper>
-  )
-}
+  );
+};
 
 export default App;
-

@@ -13,8 +13,7 @@ const PlaytimeTable = styled.table`
   background-color: white;
 `;
 
-const OverTimeTable = ( { individualData } ) => {
-
+const OverTimeTable = ({ individualData }) => {
   // wrangles data and renders rows
   const dataMapper = () => {
     let output = [];
@@ -24,26 +23,22 @@ const OverTimeTable = ( { individualData } ) => {
           <td>{individualData.dates[i]}</td>
           <td>{individualData.times[i]}</td>
         </tr>
-
-      )
+      );
     }
-    return output.map(row => row)
-  }
+    return output.map((row) => row);
+  };
 
   return (
-  <PlaytimeTable>
-    <ColoredHead >
-      <tr>
-        <th>Date</th>
-        <th>Playtime</th>
-      </tr>
-    </ColoredHead>
-    <tbody>
-      {dataMapper()}
-    </tbody>
-  </PlaytimeTable>
-  )
-
-}
+    <PlaytimeTable>
+      <ColoredHead>
+        <tr>
+          <th>Date</th>
+          <th>Playtime</th>
+        </tr>
+      </ColoredHead>
+      <tbody>{dataMapper()}</tbody>
+    </PlaytimeTable>
+  );
+};
 
 export default OverTimeTable;

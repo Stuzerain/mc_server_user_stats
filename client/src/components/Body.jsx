@@ -15,7 +15,7 @@ const BodyWrapper = styled.div`
   padding: 2%;
 `;
 
-const Body = ( { display } ) => {
+const Body = ({ display }) => {
   /*** state that holds player data and list of currently online players ***/
   const [data, setData] = useState([]);
   const [currentlyOnline, setCurrentlyOnline] = useState([]);
@@ -23,27 +23,34 @@ const Body = ( { display } ) => {
   useEffect(() => {
     checkOnline(setCurrentlyOnline);
     checkTotals(setData);
-  }, [])
+  }, []);
   /*----------------------------*/
 
-  if (display === 'total') return (
-    <BodyWrapper>
-      <TotalTable data={data} currentlyOnline={currentlyOnline} checkOnline={() => checkOnline(setCurrentlyOnline)}/>
-      <TotalChart data={data} checkTotals={() => checkTotals(setData)}/>
-    </BodyWrapper>
-  )
+  if (display === 'total')
+    return (
+      <BodyWrapper>
+        <TotalTable
+          data={data}
+          currentlyOnline={currentlyOnline}
+          checkOnline={() => checkOnline(setCurrentlyOnline)}
+        />
+        <TotalChart data={data} checkTotals={() => checkTotals(setData)} />
+      </BodyWrapper>
+    );
 
-  if (display === 'individual') return (
-    <BodyWrapper>
-      <DateSearch data={data}/>
-    </BodyWrapper>
-  )
+  if (display === 'individual')
+    return (
+      <BodyWrapper>
+        <DateSearch data={data} />
+      </BodyWrapper>
+    );
 
-  if (display === 'about') return (
-    <BodyWrapper>
-      <About />
-    </BodyWrapper>
-  )
-}
+  if (display === 'about')
+    return (
+      <BodyWrapper>
+        <About />
+      </BodyWrapper>
+    );
+};
 
 export default Body;

@@ -23,25 +23,25 @@ const NotOnlineRow = styled.tr`
   background-color: pink;
 `;
 
-const TotalTable = ( { data, currentlyOnline, checkOnline }) => {
-
-  const mapRows = data.map((person, index) =>
+const TotalTable = ({ data, currentlyOnline, checkOnline }) => {
+  const mapRows = data.map((person, index) => (
     <tr key={index}>
       <td>{person.name}</td>
       <td>{person.timesum}</td>
     </tr>
-    )
+  ));
 
-  const mapOnline = currentlyOnline.map((name, index) =>
+  const mapOnline = currentlyOnline.map((name, index) => (
     <tr key={index}>
       <td>{name}</td>
     </tr>
-    )
+  ));
 
-  const noOnline = () =>
+  const noOnline = () => (
     <NotOnlineRow>
       <td>No players online</td>
     </NotOnlineRow>
+  );
 
   return (
     <TablesWrapper>
@@ -53,31 +53,27 @@ const TotalTable = ( { data, currentlyOnline, checkOnline }) => {
             <th>Total Time</th>
           </tr>
         </ColoredHead>
-        <tbody>
-          {mapRows}
-        </tbody>
+        <tbody>{mapRows}</tbody>
       </PlaytimeTable>
 
-        <PlaytimeTable>
-          <caption>Currently online</caption>
-          <ColoredHead>
-            <tr >
-              <th>Name</th>
-            </tr>
-          </ColoredHead>
-          <tbody>
-            {currentlyOnline.length ? mapOnline : noOnline()}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>
-                <button onClick={checkOnline}>Refresh Table</button>
-              </td>
-            </tr>
-          </tfoot>
-        </PlaytimeTable>
+      <PlaytimeTable>
+        <caption>Currently online</caption>
+        <ColoredHead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </ColoredHead>
+        <tbody>{currentlyOnline.length ? mapOnline : noOnline()}</tbody>
+        <tfoot>
+          <tr>
+            <td>
+              <button onClick={checkOnline}>Refresh Table</button>
+            </td>
+          </tr>
+        </tfoot>
+      </PlaytimeTable>
     </TablesWrapper>
-  )
-}
+  );
+};
 
 export default TotalTable;
