@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Bar } from 'react-chartjs-2';
 
 const ChartWrapper = styled.div`
-  /* border: 1px solid black; */
+  border: 1px solid black;
   margin: 2%;
   display: flex;
   flex-direction: column;

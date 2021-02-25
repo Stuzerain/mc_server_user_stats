@@ -8,6 +8,10 @@ const RawWrapper = styled.div`
 
 const RawData = styled.div`
   background-color: white;
+  border: 1px solid black;
+  max-height: 50vh;
+  overflow: auto;
+  white-space: pre-wrap;
 `;
 
 const Raw = ({ rawData }) => {

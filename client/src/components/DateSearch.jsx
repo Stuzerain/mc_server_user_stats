@@ -14,10 +14,12 @@ const InfoHeader = styled.span`
   font-weight: bold;
   margin-top: 0;
   background-color: white;
+  border: 1px solid black;
 `;
 
 const UserDropdown = styled.span`
   background-color: white;
+  border: 1px solid black;
 `;
 
 const DateSearch = ({ data }) => {

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import Mods from "./Mods.jsx";
-import Raw from "./Raw.jsx";
-const { getRawData } = require("../utilities/APIfunctions.js");
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import Mods from './Mods.jsx';
+import Raw from './Raw.jsx';
+const { getRawData } = require('../utilities/APIfunctions.js');
 
 const AboutWrapper = styled.div`
   margin: auto;
@@ -14,6 +14,7 @@ const AboutWrapper = styled.div`
 const AboutChild = styled.div`
   margin: 12px;
   background-color: white;
+  border: 1px solid black;
 `;
 
 const About = () => {

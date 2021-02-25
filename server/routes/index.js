@@ -3,7 +3,7 @@ const pgres = require('../../database/index.js');
 const axios = require('axios');
 const checkServerForPlayers = require('../mcQuery.js');
 
-/***  ***/
+/*** Manual starting and stopping of server queries, not for normal use ***/
 let runMCQuery = setInterval(() => checkServerForPlayers(), 300000);
 
 api.get('/stop', (req, res) => {
