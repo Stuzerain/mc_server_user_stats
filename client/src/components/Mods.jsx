@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ModsWrapper = styled.div`
-   ;
-`;
+const ModsWrapper = styled.div``;
 
 const ModsTable = styled.table`
   border: 1px solid black;

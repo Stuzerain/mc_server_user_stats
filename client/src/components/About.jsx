@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Mods from './Mods.jsx';
 import Raw from './Raw.jsx';
-// const { getRawData } = require('../utilities/APIfunctions.js');
 
 const AboutWrapper = styled.div`
   margin: auto;
