@@ -27,4 +27,4 @@ This application is intended to be lightweight and not require direct access to 
 - Several settings in `react-chartjs-2` don't appear  to function as intended. In future, the library may need to be replaced with one that functions as intended, as it is the source of several bugs.
 
 ### Example ###
-Please see: https://recordit.co/6myoTOskSR for an example of the frontend.
+Please see: https://recordit.co/CtJdiY6H6e for an example of the frontend.
