@@ -17,14 +17,16 @@ const HeadItem = styled.h2`
   background-color: lightgray;
 `;
 
-const Header = ( { setDisplay } ) => {
+const Header = ({ setDisplay }) => {
   return (
     <Heading>
       <HeadItem onClick={() => setDisplay('total')}>Total Playtime</HeadItem>
-      <HeadItem onClick={() => setDisplay('individual')}>Individual Playtimes</HeadItem>
+      <HeadItem onClick={() => setDisplay('individual')}>
+        Individual Playtimes
+      </HeadItem>
       <HeadItem onClick={() => setDisplay('about')}>About</HeadItem>
     </Heading>
-  )
-}
+  );
+};
 
 export default Header;

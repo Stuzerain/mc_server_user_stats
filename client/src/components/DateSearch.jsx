@@ -12,68 +12,73 @@ const DateComponentsWrapper = styled.div`
 
 const InfoHeader = styled.span`
   font-weight: bold;
-  margin-top: 0;
+  margin-top: 4px;
   background-color: white;
+  border: 1px solid black;
 `;
 
 const UserDropdown = styled.span`
+  margin-top: 4px;
   background-color: white;
+  border: 1px solid black;
 `;
 
-
-const DateSearch = ( { data } ) => {
-
-  const [selected, setSelected] = useState('');
+const DateSearch = ({ data }) => {
   const [date, setDate] = useState('');
   const [dailyData, setDailyData] = useState({});
   const [individualData, setIndividualData] = useState({});
 
-  const usersMap = data.map((user, index) =>
-    <option key={index} value={user.peopleid}>{user.name}</option>
-  )
+  const usersMap = data.map((user, index) => (
+    <option key={index} value={user.peopleid}>
+      {user.name}
+    </option>
+  ));
 
   return (
     <DateComponentsWrapper>
-      <InfoHeader>Select a user to view daily playtimes across time for that user</InfoHeader>
+      <InfoHeader>
+        Select a user to view daily playtimes for that user
+      </InfoHeader>
 
       <form>
         <UserDropdown>
-          <label htmlFor='user'>User:</label>
-          <select id='user' defaultValue='default' onChange={(event) => setSelected(event.target.value)}>
-            <option value='default' disabled>Select a user</option>
+          <select
+            id='user'
+            defaultValue='default'
+            onChange={(event) =>
+              getIndividualStats(event.target.value, setIndividualData)
+            }
+          >
+            <option value='default' disabled>
+              Select a user
+            </option>
             {usersMap}
           </select>
         </UserDropdown>
       </form>
 
-      <button onClick={() => getIndividualStats(selected, setIndividualData)}>Check playtime</button>
-
-      {individualData.dates &&
+      {individualData.dates && (
         <div>
-        <OverTimeTable individualData={individualData} />
-        <OverTimeChart individualData={individualData} />
+          <OverTimeTable individualData={individualData} />
+          <OverTimeChart individualData={individualData} />
         </div>
-      }
+      )}
     </DateComponentsWrapper>
-  )
-
-}
+  );
+};
 
 export default DateSearch;
-
 
 /*** Parts of old format -- may come back for reuse later
  * Includes ability to search by specific date  ***/
 
-
-  // const getDateStats = () => {
-  //   if (selected.length > 0 && date.length > 0) {
-  //     axios.get(`/api/daily/${selected}/${date}`)
-  //       .then(result => setDailyData(result.data[0]))
-  //   }
-  //   else console.log('please select user and date')
-  // }
-
+// const getDateStats = () => {
+//   if (selected.length > 0 && date.length > 0) {
+//     axios.get(`/api/daily/${selected}/${date}`)
+//       .then(result => setDailyData(result.data[0]))
+//   }
+//   else console.log('please select user and date')
+// }
 
 // { dailyData.name &&
 

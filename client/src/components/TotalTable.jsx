@@ -23,61 +23,74 @@ const NotOnlineRow = styled.tr`
   background-color: pink;
 `;
 
-const TotalTable = ( { data, currentlyOnline, checkOnline }) => {
-
-  const mapRows = data.map((person, index) =>
+const TotalTable = ({ data, currentlyOnline }) => {
+  const mapRows = data.map((person, index) => (
     <tr key={index}>
       <td>{person.name}</td>
       <td>{person.timesum}</td>
     </tr>
-    )
+  ));
 
-  const mapOnline = currentlyOnline.map((name, index) =>
-    <tr key={index}>
-      <td>{name}</td>
-    </tr>
-    )
+  if (currentlyOnline) {
+    const mapOnline = currentlyOnline.map((name, index) => (
+      <tr key={index}>
+        <td>{name}</td>
+      </tr>
+    ));
 
-  const noOnline = () =>
-    <NotOnlineRow>
-      <td>No players online</td>
-    </NotOnlineRow>
+    const noOnline = () => (
+      <NotOnlineRow>
+        <td>No players online</td>
+      </NotOnlineRow>
+    );
 
-  return (
-    <TablesWrapper>
-      <PlaytimeTable>
-        <caption>Total playtime of users</caption>
-        <ColoredHead>
-          <tr>
-            <th>Name</th>
-            <th>Total Time</th>
-          </tr>
-        </ColoredHead>
-        <tbody>
-          {mapRows}
-        </tbody>
-      </PlaytimeTable>
+    return (
+      <TablesWrapper>
+        <PlaytimeTable>
+          <caption>Total playtime of users</caption>
+          <ColoredHead>
+            <tr>
+              <th>Name</th>
+              <th>Total Time</th>
+            </tr>
+          </ColoredHead>
+          <tbody>{mapRows}</tbody>
+        </PlaytimeTable>
 
         <PlaytimeTable>
           <caption>Currently online</caption>
           <ColoredHead>
-            <tr >
+            <tr>
               <th>Name</th>
             </tr>
           </ColoredHead>
-          <tbody>
-            {currentlyOnline.length ? mapOnline : noOnline()}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>
-                <button onClick={checkOnline}>Refresh Table</button>
-              </td>
-            </tr>
-          </tfoot>
+          <tbody>{currentlyOnline.length ? mapOnline : noOnline()}</tbody>
         </PlaytimeTable>
-    </TablesWrapper>
-  )
-}
+      </TablesWrapper>
+    );
+  } else {
+    return (
+      <TablesWrapper>
+        <PlaytimeTable>
+          <caption>Total playtime of users</caption>
+          <ColoredHead>
+            <tr>
+              <th>Name</th>
+              <th>Total Time</th>
+            </tr>
+          </ColoredHead>
+          <tbody>{mapRows}</tbody>
+        </PlaytimeTable>
+        <PlaytimeTable>
+          <ColoredHead>
+            <tr>
+              <th>The server is currently offline</th>
+            </tr>
+          </ColoredHead>
+        </PlaytimeTable>
+      </TablesWrapper>
+    );
+  }
+};
 
 export default TotalTable;
