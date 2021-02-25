@@ -52,6 +52,7 @@ api.get('/daily/:id/:date', async (req, res) => {
   });
 });
 
+/*** currently deprecated, used to separately query server to determin who was online, wasting an API call
 api.get('/online', async (req, res) => {
   let query = await axios.get(
     `https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`
@@ -63,11 +64,10 @@ api.get('/online', async (req, res) => {
   }
 
   return res.json({
-    online: 0,
-    serverStatus: 'offline',
+    online: false,
   });
 });
-
+*/
 api.get('/raw', async (req, res) => {
   let query = await axios.get(
     `https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`

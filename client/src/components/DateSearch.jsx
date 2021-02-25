@@ -12,18 +12,18 @@ const DateComponentsWrapper = styled.div`
 
 const InfoHeader = styled.span`
   font-weight: bold;
-  margin-top: 0;
+  margin-top: 4px;
   background-color: white;
   border: 1px solid black;
 `;
 
 const UserDropdown = styled.span`
+  margin-top: 4px;
   background-color: white;
   border: 1px solid black;
 `;
 
 const DateSearch = ({ data }) => {
-  const [selected, setSelected] = useState('');
   const [date, setDate] = useState('');
   const [dailyData, setDailyData] = useState({});
   const [individualData, setIndividualData] = useState({});
@@ -37,16 +37,17 @@ const DateSearch = ({ data }) => {
   return (
     <DateComponentsWrapper>
       <InfoHeader>
-        Select a user to view daily playtimes across time for that user
+        Select a user to view daily playtimes for that user
       </InfoHeader>
 
       <form>
         <UserDropdown>
-          <label htmlFor='user'>User:</label>
           <select
             id='user'
             defaultValue='default'
-            onChange={(event) => setSelected(event.target.value)}
+            onChange={(event) =>
+              getIndividualStats(event.target.value, setIndividualData)
+            }
           >
             <option value='default' disabled>
               Select a user
@@ -55,10 +56,6 @@ const DateSearch = ({ data }) => {
           </select>
         </UserDropdown>
       </form>
-
-      <button onClick={() => getIndividualStats(selected, setIndividualData)}>
-        Check playtime
-      </button>
 
       {individualData.dates && (
         <div>

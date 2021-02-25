@@ -12,6 +12,7 @@ const RawData = styled.div`
   max-height: 50vh;
   overflow: auto;
   white-space: pre-wrap;
+  display: inline-block;
 `;
 
 const Raw = ({ rawData }) => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Mods from './Mods.jsx';
 import Raw from './Raw.jsx';
-const { getRawData } = require('../utilities/APIfunctions.js');
+// const { getRawData } = require('../utilities/APIfunctions.js');
 
 const AboutWrapper = styled.div`
   margin: auto;
@@ -13,17 +13,13 @@ const AboutWrapper = styled.div`
 
 const AboutChild = styled.div`
   margin: 12px;
+  padding: 2px;
   background-color: white;
   border: 1px solid black;
+  display: inline-block;
 `;
 
-const About = () => {
-  const [rawData, setRawData] = useState({});
-
-  useEffect(() => {
-    getRawData(setRawData);
-  }, []);
-
+const About = ({ rawData }) => {
   const showMods = () => {
     if (rawData.online) {
       return <Mods mods={rawData.mods} />;
