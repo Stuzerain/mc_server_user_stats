@@ -19,11 +19,9 @@ This application is intended to be lightweight and not require direct access to 
 - 'About' displays information about the application and additional resources.
 
 ## Future Plans ##
-- Mod list in 'About' tab
 - Message board functionality for players to communicate asynchronously via an online instance of this application (?)
 
 ### Known Bugs/Issues ###
-- Charts resize oddly. If a webpage is adjusted, the charts will always expand, whether the webpage is being expanded or shrunken. Current fix is to refresh webpage.
 - Several settings in `react-chartjs-2` don't appear  to function as intended. In future, the library may need to be replaced with one that functions as intended, as it is the source of several bugs.
 
 ### Example ###
