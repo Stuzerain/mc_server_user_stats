@@ -17,7 +17,7 @@ const UpdateChartButton = styled.button`
   max-width: 125px;
 `;
 
-const TotalChart = ({ data, checkTotals }) => {
+const TotalChart = ({ data }) => {
   let constructedResponse = { names: [], times: [] };
   data.forEach((row) => {
     constructedResponse.names.push(row.name);
@@ -57,7 +57,6 @@ const TotalChart = ({ data, checkTotals }) => {
           }}
         />
       </JustChart>
-      <UpdateChartButton onClick={checkTotals}>Update Chart</UpdateChartButton>
     </ChartWrapper>
   );
 };

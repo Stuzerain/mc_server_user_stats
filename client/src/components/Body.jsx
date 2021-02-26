@@ -15,23 +15,33 @@ const BodyWrapper = styled.div`
   padding: 2%;
 `;
 
+const RefreshButton = styled.button`
+  display: inline-block;
+  margin: 0 50%;
+`;
+
 const Body = ({ display }) => {
   /*** state that holds player data and list of currently online players ***/
   const [rawData, setRawData] = useState({});
   const [data, setData] = useState([]);
   const [currentlyOnline, setCurrentlyOnline] = useState(null);
 
-  useEffect(() => {
+  const refreshRawDataAndCheckTotals = () => {
     getRawData(setRawData, setCurrentlyOnline);
     checkTotals(setData);
+  };
+
+  useEffect(() => {
+    refreshRawDataAndCheckTotals();
   }, []);
   /*----------------------------*/
 
   if (display === 'total')
     return (
       <BodyWrapper>
+        <RefreshButton>Refresh Online List and Chart</RefreshButton>
         <TotalTable data={data} currentlyOnline={currentlyOnline} />
-        <TotalChart data={data} checkTotals={() => checkTotals(setData)} />
+        <TotalChart data={data} />
       </BodyWrapper>
     );
 
