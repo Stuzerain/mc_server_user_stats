@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
+import TotalAndOnlineTables from './TotalAndOnlineTables.jsx';
 import TotalChart from './TotalChart.jsx';
-import TotalTable from './TotalTable.jsx';
 import DateSearch from './DateSearch.jsx';
 import About from './About.jsx';
 
@@ -40,7 +40,11 @@ const Body = ({ display }) => {
     return (
       <BodyWrapper>
         <RefreshButton>Refresh Online List and Chart</RefreshButton>
-        <TotalTable data={data} currentlyOnline={currentlyOnline} />
+        <TotalAndOnlineTables
+          data={data}
+          currentlyOnline={currentlyOnline}
+          online={rawData.online}
+        />
         <TotalChart data={data} />
       </BodyWrapper>
     );
