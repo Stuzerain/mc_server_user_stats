@@ -61,7 +61,7 @@ const OnlineTable = ({ currentlyOnline, online }) => {
       <OnTable>
         <ColoredHead>
           <tr>
-            <th>No players currently online</th>
+            <th>Server is currently offline</th>
           </tr>
         </ColoredHead>
       </OnTable>
