@@ -1,3 +1,4 @@
+const http = require('http');
 const axios = require('axios');
 const pgres = require('../database/index.js');
 
@@ -28,6 +29,9 @@ const updateDailyTime = (id) =>
 const insertDailyTime = (id) =>
   `INSERT INTO dailyTime (peopleid) VALUES (${id})`;
 /*---------------------------*/
+
+const httpAgent = new http.Agent({ keepAlive: true });
+const instance = axios.create({ httpAgent });
 
 const pgUpdate = (name) => {
   let personID;
@@ -86,9 +90,12 @@ const start = async (arr) => {
 
 const checkServerForPlayers = async () => {
   console.log('checkserverforplayers invoked');
-  let minecraftQuery = await axios.get(
-    `https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`
-  );
+  let minecraftQuery = await axios
+    .get(`https://api.mcsrvstat.us/2/${process.env.SERVER_IP}`, { httpAgent })
+    .catch((err) => {
+      console.error('there was an error');
+      return;
+    });
 
   if (minecraftQuery.data.online) {
     let players = minecraftQuery.data.players;
